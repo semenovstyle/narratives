@@ -1,0 +1,739 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700;900&display=swap");
+
+:root {
+  --block-bg-color: #dfe0ef;
+  --page-bg-color: #ffffff;
+  --text-color: #1e1e1e;
+
+  --font-main: "Raleway", sans-serif;
+
+  --desktop-padding: 50px;
+  --mobile-padding: 15px;
+  --block-gap: 30px;
+  --border-radius: 35px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--page-bg-color);
+  font-family: var(--font-main);
+  color: var(--text-color);
+  margin: 0;
+}
+
+section {
+  background-color: var(--block-bg-color);
+  border-radius: var(--border-radius);
+  padding: 40px var(--desktop-padding); /* Внутренние отступы: 40px сверху/снизу, 50px по бокам */
+  margin: 0 var(--desktop-padding) var(--block-gap) var(--desktop-padding); /* Внешние отступы, создающие расстояние между блоками */
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+.logo img {
+  width: 50%;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  height: 657px;
+
+  /* Создаем контекст для абсолютного позиционирования картинки */
+  position: relative;
+  /* Прячем все, что выходит за пределы блока по горизонтали */
+  overflow-x: clip;
+}
+
+/* --- Левая часть с текстом --- */
+.hero-text {
+  /* Ограничиваем ширину текстового блока */
+  max-width: 50%;
+  /* Гарантируем, что текст всегда будет НАД картинкой */
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: clamp(
+    26px,
+    5vw,
+    64px
+  ); /* Мин. 42px, идеал. 5% ширины экрана, макс. 64px */
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.hero-text p {
+  font-size: clamp(
+    14px,
+    2.5vw,
+    26px
+  ); /* Мин. 20px, идеал. 2.5% ширины экрана, макс. 26px */
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* --- Кнопка --- */
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+
+  background-color: #3840f7; /* Новый цвет кнопки */
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(56, 64, 247, 0.4); /* Тень под кнопкой */
+
+  padding: 15px 30px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.hero-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(56, 64, 247, 0.5);
+}
+
+.hero-button img {
+  width: 30px;
+  height: 30px;
+}
+
+/* --- Правая часть с картинкой --- */
+.hero-image {
+  /* Абсолютное позиционирование относительно блока .hero */
+  position: absolute;
+  right: -5%; /* Сдвигаем контейнер на 5% за правую границу */
+  bottom: 0;
+
+  width: 55%; /* Задаем ширину контейнера */
+  height: 110%; /* Делаем контейнер выше родителя, чтобы картинка вышла за нижнюю границу */
+
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  /* Картинка будет вписана в контейнер, сохраняя пропорции */
+  object-fit: contain;
+}
+
+/* === FEATURES === */
+
+.features {
+  text-align: center;
+}
+
+.features-title {
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 20px;
+  justify-items: center;
+}
+
+.feature-card {
+  max-width: 320px;
+}
+
+.feature-card img {
+  width: 60px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.directions {
+  /* Уникальный фон для этого блока, переопределяющий общий стиль */
+  background-color: #efefef;
+}
+
+.directions-title {
+  font-size: 40px;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.directions-content {
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание */
+  gap: 50px; /* Расстояние между картинкой и текстом */
+}
+
+.directions-image,
+.directions-text {
+  flex: 1; /* Обе части занимают по 50% доступного пространства */
+}
+
+.directions-image img {
+  width: 80%;
+  height: auto;
+  display: block; /* Убирает лишний отступ под картинкой */
+  border-radius: 25px; /* Слегка скругляем углы у картинки */
+}
+
+.direction-item:not(:last-child) {
+  margin-bottom: 30px; /* Отступ между текстовыми блоками */
+}
+
+.direction-item h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.direction-item p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* === SLUHMEKYING === */
+
+.sluhmeyking-intro {
+  display: flex;
+  gap: 40px;
+  margin-bottom: -70px; /* Отступ между верхней частью и карточками */
+}
+
+.sluhmeyking-text {
+  flex-basis: 60%;
+}
+
+.sluhmeyking-text h2 {
+  font-size: 40px; /* Размер заголовка, как в других блоках */
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.sluhmeyking-text p {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.sluhmeyking-bg-image {
+  flex-basis: 40%;
+  border-radius: 25px;
+  overflow: hidden; /* Прячем углы картинки, которые выходят за рамки скругления */
+}
+
+/* Стилизуем саму картинку, чтобы она вела себя как фон */
+.sluhmeyking-bg-image img {
+  width: 64%;
+  height: 100%;
+  object-fit: cover; /* Аналог background-size: cover для тега <img> */
+  display: block;
+}
+
+/* --- Карточки --- */
+.sluhmeyking-cards {
+  display: grid;
+  /* Адаптивная сетка с колонками фиксированной ширины */
+  grid-template-columns: repeat(auto-fit, 495px);
+  gap: 30px;
+  justify-content: center; /* Центрирует всю сетку карточек */
+}
+
+.sluhmeyking-card {
+  width: 494px;
+  height: 260px;
+  background-color: #ffffff;
+  border-radius: 17px;
+
+  /* Центрирование содержимого */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+}
+.sluhmeyking-card {
+  width: 494px;
+  height: 260px;
+  background-color: #ffffff;
+  border-radius: 17px;
+  text-align: center;
+
+  /* Создаем контекст для абсолютного позиционирования иконки */
+  position: relative;
+
+  /* Отступ сверху создает место для "выступающей" иконки */
+  padding: 60px 25px 25px 25px;
+}
+
+.sluhmeyking-card img {
+  width: 70px;
+  height: 70px;
+
+  /* Абсолютное позиционирование относительно карточки */
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  /* Сдвигаем иконку вверх и влево на 50% ее собственного размера */
+  transform: translate(-50%, -50%);
+}
+.sluhmeyking-card img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 25px;
+}
+
+.sluhmeyking-card h3,
+.sluhmeyking-card p {
+  font-size: 20px;
+  margin: 0;
+}
+
+.sluhmeyking-card h3 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.sluhmeyking-card p {
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.smm-content {
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание по центру */
+  gap: 50px; /* Расстояние между картинкой и текстом */
+}
+
+.smm-image,
+.smm-text {
+  flex: 1; /* Обе части занимают по 50% доступного пространства */
+}
+
+.smm-image img {
+  width: 55%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 25px;
+}
+
+.smm-text h2 {
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.smm-text p {
+  font-size: 22px; /* Чуть крупнее для лучшей читаемости */
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+}
+.why-us {
+  /* Используем такой же особый фон, как в блоке Directions */
+  background-color: #efefef;
+}
+
+.why-us-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.why-us-text,
+.why-us-image {
+  flex-basis: 50%;
+}
+
+.why-us-text h2 {
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 40px; /* Увеличим отступ до пунктов */
+}
+
+.why-us-item:not(:last-child) {
+  margin-bottom: 30px; /* Отступ между пунктами */
+}
+
+.why-us-item h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.why-us-item p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Центрирование картинки в правой части */
+.why-us-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.why-us-image img {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  border-radius: 25px;
+}
+.how-we-work-header {
+  text-align: center;
+  max-width: 800px; /* Ограничиваем ширину, чтобы текст не был слишком длинным */
+  margin: 0 auto 60px auto; /* Центрируем и добавляем нижний отступ */
+}
+
+.how-we-work-header h2 {
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.how-we-work-header p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.steps-grid {
+  display: grid;
+  /* 4 колонки на десктопе */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Расстояние между кружком и текстом */
+}
+
+.step-number {
+  width: 76px;
+  height: 76px;
+  background-color: #93eab8;
+  border-radius: 50%; /* Делает элемент круглым */
+  flex-shrink: 0; /* Запрещает кружку сжиматься */
+  display: flex;
+  justify-content: center;
+  font-size: 64px;
+  font-style: italic;
+  color: #000; /* Белый цвет для цифры, чтобы она хорошо читалась */
+  line-height: 1; /* Помогает с вертикальным выравниванием крупного шрифта */
+  margin-top: -95px;
+}
+
+.step-item h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.step-item p {
+  font-size: 18px; /* Сделаем чуть меньше для иерархии */
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+.footer {
+  /* Создаем контекст для абсолютного позиционирования картинки */
+  position: relative;
+  /* Убираем внутренние отступы, чтобы картинка могла прижаться к краю */
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+
+  /* Ставим текст НАД абсолютно спозиционированной картинкой */
+  position: relative;
+  z-index: 2;
+}
+
+.footer-header h2 {
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.footer-header p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-image {
+  /* Вырываем картинку из потока и помещаем на задний план */
+  position: absolute;
+  top: 0;
+  left: var(
+    --desktop-padding
+  ); /* Прижимаем к левому краю с учетом общего отступа */
+  width: 45%;
+  height: 100%;
+  z-index: 1; /* Уровень ниже, чем у текста (z-index: 2) */
+
+  /* Центрируем картинку внутри ее контейнера */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin-bottom: -35px;
+}
+
+/* Пустой блок-распорка, занимает место картинки в flex-контейнере */
+.footer-content::before {
+  content: "";
+  flex-basis: 50%;
+}
+
+.footer-main {
+  flex-basis: 50%;
+}
+
+.contact-card {
+  width: 500px;
+  height: 220px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  padding: 0 40px;
+
+  /* Центрируем и распределяем контакты внутри карточки */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.contact-item img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Отступ для кнопки под карточкой */
+.footer-button {
+  margin-top: 30px;
+}
+
+/* Для планшетов (экраны меньше 1200px) */
+@media (max-width: 1200px) {
+  .features-grid {
+    /* Перестраиваем в 2 колонки, чтобы контент не сжимался */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  footer-image {
+    position: static; /* Возвращаем картинку в обычный поток */
+    width: auto;
+    flex-basis: 50%;
+    order: 2; /* Ставим картинку после контактов */
+  }
+
+  .footer-main {
+    order: 1;
+  }
+
+  /* Убираем распорку */
+  .footer-content::before {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-image {
+    width: 50%;
+    right: -2%;
+  }
+  .directions-content {
+    /* На планшетах и мобильных ставим блоки друг под друга */
+    flex-direction: column;
+  }
+  .sluhmeyking-cards {
+    /* Перестраиваем сетку в одну колонку */
+    grid-template-columns: 1fr;
+    /* 3. Устанавливаем расстояние между карточками */
+    gap: 65px;
+  }
+
+  .sluhmeyking-card {
+    /* 2. Адаптируем ширину и высоту карточки */
+    width: 100%; /* Карточка теперь занимает всю доступную ширину */
+    height: auto; /* Высота подстраивается под контент */
+    min-height: 300px; /* Минимальная высота, чтобы сохранить пропорции */
+  }
+  .sluhmeyking-intro {
+    /* Ставим текстовый блок над картинкой */
+    flex-direction: column;
+    margin-bottom: 55px;
+  }
+
+  .sluhmeyking-bg-image {
+    min-height: 300px; /* Задаем минимальную высоту, чтобы картинка не исчезла */
+  }
+
+  /* Адаптируем большой шрифт параграфа */
+  .sluhmeyking-text p {
+    font-size: clamp(24px, 4vw, 32px);
+  }
+  .sluhmeyking-intro {
+    flex-direction: column;
+  }
+
+  .sluhmeyking-bg-image {
+    display: none;
+  }
+
+  .sluhmeyking-text p {
+    font-size: clamp(24px, 4vw, 32px);
+  }
+  .smm-content {
+    /* На планшетах и мобильных ставим блоки друг под друга */
+    flex-direction: column;
+  }
+  .why-us-content {
+    /* Ставим блоки друг под друга */
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding-left: var(--mobile-padding);
+    padding-right: var(--mobile-padding);
+    margin-left: var(--mobile-padding);
+    margin-right: var(--mobile-padding);
+  }
+  .hero {
+    height: auto; /* Убираем фиксированную высоту */
+    flex-direction: column;
+    text-align: center;
+    overflow: visible; /* Позволяем блоку быть видимым */
+  }
+
+  .hero-text {
+    max-width: 100%;
+    order: 2; /* Текст теперь идет вторым */
+  }
+
+  .hero-button {
+    margin: 0 auto; /* Центрируем кнопку */
+  }
+
+  .hero-image {
+    order: 1; /* Картинка теперь первая */
+    position: relative; /* Остается абсолютной, но относительно смещенного hero */
+    top: 0;
+    left: 25%;
+    transform: translateX(-25%); /* Центрируем по горизонтали */
+    width: 85%; /* Ширина картинки на мобильном */
+    height: auto; /* Высота авто */
+  }
+  .steps-grid {
+    /* 1 колонка на мобильных */
+    grid-template-columns: 1fr;
+  }
+  .features-grid {
+    /* Перестраиваем в 1 колонку */
+    grid-template-columns: 1fr;
+  }
+  .footer-content {
+    flex-direction: column;
+  }
+
+  /* 1. Ставим изображение в самый низ */
+  .footer-image {
+    display: none;
+    order: 2; /* Изображение будет последним элементом */
+    margin-top: 40px; /* Отступ сверху от блока контактов */
+  }
+
+  /* Блок с контактами и кнопкой ставим наверх */
+  .footer-main {
+    order: 1;
+    width: 100%; /* Заставляем блок занять всю ширину */
+
+    /* Центрируем кнопку внутри этого блока */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-card {
+    width: 100%;
+    height: auto;
+    padding: 30px 20px;
+  }
+
+  /* 2. Добавляем явный отступ для кнопки от карточки */
+  .footer-button {
+    margin-top: 30px;
+  }
+}
